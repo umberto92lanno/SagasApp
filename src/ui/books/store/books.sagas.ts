@@ -1,4 +1,4 @@
-import {takeLeading, put, call, takeEvery, select, race, take, retry} from 'typed-redux-saga';
+import {takeLeading, put, call, takeEvery, select, race, take, cancel} from 'typed-redux-saga';
 import {BooksActions} from "./books.slice";
 import {getBooksLists} from "../api/bookRepo";
 import {getBooksListState} from "./books.selectors";
@@ -9,10 +9,12 @@ function* getBooksList() {
         const response = yield* callApi(getBooksLists);
         // const response = yield* retry(3, 2000, getBooksLists);
         // const response = yield* call(getBooksLists);
-        console.log(response);
-        yield put(BooksActions.getBooksSuccess(response));
+        if (!response) {
+            return;
+        }
+        yield* put(BooksActions.getBooksSuccess(response));
     } catch (error) {
-        yield put(BooksActions.getBooksError());
+        yield* put(BooksActions.getBooksError());
     }
 }
 

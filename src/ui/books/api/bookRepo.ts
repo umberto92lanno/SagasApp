@@ -12,7 +12,7 @@ export interface BookLists {
 }
 
 export const getBooksLists = async (): Promise<BookLists[]>  => {
-    const callApi = await httpClient.call<GenericApiResponse<BookLists[]>>('lists/names.json', HttpMethod.get, {
+    const callApi = httpClient.call<GenericApiResponse<BookLists[]>>('lists/names.json', HttpMethod.get, {
         params: {
             'api-key': 'PL0DUwFZ0UJh3fKqix45dkOlFgzzsnFk',
         }
