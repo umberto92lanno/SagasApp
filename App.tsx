@@ -1,14 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import {Provider} from "react-redux";
-import {rootStore} from "./src/store/rootStore";
-import {FakeScreen} from "./src/shared/components/fakeScreen/fakeScreen";
+import { StyleSheet, View } from 'react-native';
 
 export default function App() {
   return (
-      <Provider store={rootStore}>
-        <FakeScreen />
-      </Provider>
+    <View />
   );
 }
 
